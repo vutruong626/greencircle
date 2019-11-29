@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Post;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
@@ -15,7 +17,8 @@ class ProductController extends Controller
      */
     public function ShowProducts()
     {
-        return view('frontend.page.products.product');
+        $show_Products = Post::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->paginate(3);
+        return view('frontend.page.products.product',compact('show_Products'));
 
     }
 

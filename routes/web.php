@@ -25,10 +25,12 @@ Route::get('/chi-tiet-san-pham','Frontend\\ProductController@ShowProductsDetail'
 
 // News
 Route::get('/tin-tuc','Frontend\\PageController@ShowNews')->name('news');
-Route::get('/chi-tiet-tin-tuc','Frontend\\PageController@ShowNewsDetail')->name('news_detail');
+Route::get('/chi-tiet-tin-tuc/{slug?}','Frontend\\PageController@ShowNewsDetail')->name('news_detail');
+Route::get('/getAjaxCategoryNews/{show_category_news}','Frontend\\PageController@getAjaxCategoryNews');
 
 // Activity of the company
 Route::get('/hoat-dong-cong-ty','Frontend\\PageController@ShowCompanyActivity')->name('company_activity');
+Route::get('/chi-thiet-hoat-dong-cong-ty/{slug?}','Frontend\\PageController@ShowCompanyActivityDetail')->name('company_activity_detail');
 
 // Price List
 Route::get('/bang-gia','Frontend\\PageController@ShowTablePrice')->name('table_price');
@@ -39,3 +41,8 @@ Route::get('/lien-he','Frontend\\PageController@ShowContact')->name('contact');
 
 
 
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

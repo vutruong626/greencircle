@@ -17,124 +17,31 @@
 <div class="post-area blog-area pt-110 pb-95 blog-column-3">
     <div class="container">
         <div class="row text-center">
+            @foreach($show_company_active as $vt_show_company_active)
             <div class="col-lg-4 col-md-6">
                 <div class="single-blog">
                     <div class="blog-image">
-                        <a href="{{route('news_detail')}}"><img src="{{$common_data['hosts'].'/assets/img/blog/1.jpg'}}"
-                                alt=""></a>
+                        <a href="{{route('company_activity_detail',$vt_show_company_active->slug)}}">
+                            <img src="{{$common_data['hosts'].'/storage/'.$vt_show_company_active->image}}"
+                                alt="{{$vt_show_company_active->title}}"></a>
                     </div>
                     <div class="blog-text">
-                        <h4><a href="{{route('news_detail')}}">Coconut improve heart and immunity.</a></h4>
+                        <h4><a href="{{route('company_activity_detail',$vt_show_company_active->slug)}}">{{$vt_show_company_active->title}}</a></h4>
                         <div class="post-meta">
                             <span class="author-name">post by: <span>Naturecircle Themes</span></span>
                             <span class="post-date"> - Oct 30,2018</span>
                         </div>
-                        <p>Coconut milk is one of the healthiest foods on world, health benefits of coconut milk make it
-                            quite popular.</p>
-                        <a href="{{route('news_detail')}}" class="default-btn">Xem thêm</a>
+                        <p>{!! $vt_show_company_active->excerpt !!}</p>
+                        <a href="{{route('company_activity_detail',$vt_show_company_active->slug)}}" class="default-btn">Xem thêm</a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog">
-                    <div class="blog-image">
-                        <a href="{{route('news_detail')}}"><img src="{{$common_data['hosts'].'/assets/img/blog/2.jpg'}}"
-                                alt=""></a>
-                    </div>
-                    <div class="blog-text">
-                        <h4><a href="{{route('news_detail')}}">The most healthful food you can eat.</a></h4>
-                        <div class="post-meta">
-                            <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                            <span class="post-date"> - Sep 11,2018</span>
-                        </div>
-                        <p>Health benefits of apple include improved digestion, prevention of stomach disorders,
-                            gallstones.</p>
-                        <a href="{{route('news_detail')}}" class="default-btn">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog">
-                    <div class="blog-image">
-                        <a href="{{route('news_detail')}}"><img src="{{$common_data['hosts'].'/assets/img/blog/5.jpg'}}"
-                                alt=""></a>
-                    </div>
-                    <div class="blog-text">
-                        <h4><a href="{{route('news_detail')}}">The most healthful food you can eat.</a></h4>
-                        <div class="post-meta">
-                            <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                            <span class="post-date"> - Sep 11,2018</span>
-                        </div>
-                        <p>Health benefits of apple include improved digestion, prevention of stomach disorders,
-                            gallstones.</p>
-                        <a href="{{route('news_detail')}}" class="default-btn">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog">
-                    <div class="blog-image">
-                        <a href="{{route('news_detail')}}"><img src="{{$common_data['hosts'].'/assets/img/blog/2.jpg'}}"
-                                alt=""></a>
-                    </div>
-                    <div class="blog-text">
-                        <h4><a href="{{route('news_detail')}}">The most healthful food you can eat.</a></h4>
-                        <div class="post-meta">
-                            <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                            <span class="post-date"> - Sep 11,2018</span>
-                        </div>
-                        <p>Health benefits of apple include improved digestion, prevention of stomach disorders,
-                            gallstones.</p>
-                        <a href="{{route('news_detail')}}" class="default-btn">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog">
-                    <div class="blog-image">
-                        <a href="{{route('news_detail')}}"><img src="{{$common_data['hosts'].'/assets/img/blog/3.jpg'}}"
-                                alt=""></a>
-                    </div>
-                    <div class="blog-text">
-                        <h4><a href="{{route('news_detail')}}">Delicious and nutritious vegetable.</a></h4>
-                        <div class="post-meta">
-                            <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                            <span class="post-date"> - Apr 22,2018</span>
-                        </div>
-                        <p>Research shows drinking beetroot juice benefit digestion, boost athletic performance. They
-                            are a good source.</p>
-                        <a href="{{route('news_detail')}}" class="default-btn">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6">
-                <div class="single-blog">
-                    <div class="blog-image">
-                        <a href="{{route('news_detail')}}"><img src="{{$common_data['hosts'].'/assets/img/blog/4.jpg'}}"
-                                alt=""></a>
-                    </div>
-                    <div class="blog-text">
-                        <h4><a href="{{route('news_detail')}}">Coconut improve heart and immunity.</a></h4>
-                        <div class="post-meta">
-                            <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                            <span class="post-date"> - Oct 30,2018</span>
-                        </div>
-                        <p>Coconut milk is one of the healthiest foods on world, health benefits of coconut milk make it
-                            quite popular.</p>
-                        <a href="{{route('news_detail')}}" class="default-btn">Xem thêm</a>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
         <div class="pagination-wrapper">
             <nav aria-label="navigation">
                 <ul class="pagination">
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link" href="#">></a></li>
-                    <li class="page-item"><a class="page-link" href="#">>|</a></li>
+                    {{ $show_company_active->links() }}
                 </ul>
             </nav>
         </div>

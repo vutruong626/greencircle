@@ -16,7 +16,7 @@
 <!-- Banner Area Start -->
 <div class="banner-area banner-one-area bg-2 fix pt-60 pb-80">
     <div class="container">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-lg-6 d-flex align-items-center">
                 <div class="banner-text pt-15">
                     <h3>Về chúng tôi <span>Greencircle</span></h3><br>
@@ -32,7 +32,6 @@
                         lại nhiều lần mà không cần tới ống hút nhựa nữa. Và ống hút tre khi bỏ đi thì vì nó là một sản
                         phẩm từ thiên nhiên nên khả năng phân hủy dễ dàng, rất có lợi cho môi trường sống của chúng ta.
                     </p>
-                    <!-- <a href="shop.html" class="default-btn">Xem thêm</a> -->
                 </div>
             </div>
             <div class="col-lg-6">
@@ -47,7 +46,8 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
+        {!! $show_about->body !!}
     </div>
 </div>
 <!-- Banner Area End -->

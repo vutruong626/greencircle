@@ -7,7 +7,7 @@
 <div class="banner-area banner-one-area bg-2 fix pt-60 pb-80">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6 d-flex align-items-center">
+            <!-- <div class="col-lg-6 d-flex align-items-center">
                 <div class="banner-text pt-15">
                     <h3>Về chúng tôi <span>Greencircle</span></h3><br>
                     <h1>Ống Hút Tre</h1>
@@ -24,20 +24,22 @@
                     </p>
                     <a href="{{route('about')}}" class="default-btn">Xem thêm</a>
                 </div>
-            </div>
+            </div> -->
+            {!! $show_about->excerpt !!}
             <div class="col-lg-6">
                 <div class="banner-image-wrapper">
                     <div class="banner-image">
-                        <img src="{{$common_data['hosts'].'/assets/img/banner/1.jpg'}}" alt="">
+                        <img src="{{$common_data['hosts'].'/storage/'.$show_about->image}}" alt="{{$show_about->title}}">
                     </div>
-                    <div class="banner-image-text">
+                    <!-- <div class="banner-image-text">
                         <h4>Ống hút tre</h4>
                         <p>We believe that healthy eating, clean air, and gentle character is the best start to
                             genuine wellbeing.</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </div>
+        
     </div>
 </div>
 <!-- Banner Area End -->
@@ -56,26 +58,27 @@
         <div class="tab-content text-center">
             <div class="tab-pane active show fade" id="tab1" role="tabpanel">
                 <div class="product-carousel">
+                    @foreach($show_products as $vt_show_products)
                     <div class="custom-col">
                         <div class="single-product-item">
                             <div class="product-image">
                                 <a href="shop.html">
-                                    <img src="{{$common_data['hosts'].'/assets/img/product/1.jpg'}}" alt="">
+                                    <img src="{{$common_data['hosts'].'/storage/'.$vt_show_products->image}}" alt="{{$vt_show_products->title}}">
                                 </a>
                                 <div class="product-hover">
                                     <ul class="hover-icon-list">
-                                        <li>
-                                            <a href="wishlist.html"><i class="icon icon-Heart"></i></a>
-                                        </li>
+                                        <!-- <li>
+                                            <a href=""><i class="icon icon-Heart"></i></a>
+                                        </li> -->
                                         <li>
                                             <a href="#"><i class="icon icon-Restart"></i></a>
                                         </li>
-                                        <li><a href="{{$common_data['hosts'].'/assets/img/product/1.jpg'}}"
+                                        <li><a href="{{$common_data['hosts'].'/storage/'.$vt_show_products->image}}"
                                                 data-toggle="modal" data-target="#productModal"><i
                                                     class="icon icon-Search"></i></a>
                                         </li>
                                     </ul>
-                                    <button type="button" class="p-cart-btn">Add to cart</button>
+                                    <button type="button" class="p-cart-btn" style="font-size: 10px;">Thêm vào giỏ hàng</button>
                                 </div>
                             </div>
                             <div class="product-text">
@@ -86,356 +89,15 @@
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>
                                 </div>
-                                <h5><a href="shop.html">Juicy Grapes</a></h5>
+                                <h5><a href="shop.html">{{$vt_show_products->title}}</a></h5>
                                 <div class="pro-price">
-                                    <span class="new-price">$86.00</span>
-                                    <span class="old-price">$92.00</span>
+                                    <span class="new-price">{{number_format($vt_show_products->price)}} VNĐ</span>
+                                    <!-- <span class="old-price">$92.00</span> -->
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="custom-col">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="shop.html">
-                                    <img src="{{$common_data['hosts'].'/assets/img/product/2.jpg'}}" alt="">
-                                </a>
-                                <div class="product-hover">
-                                    <ul class="hover-icon-list">
-                                        <li>
-                                            <a href="wishlist.html"><i class="icon icon-Heart"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon icon-Restart"></i></a>
-                                        </li>
-                                        <li><a href="{{$common_data['hosts'].'/assets/img/product/2.jpg'}}"
-                                                data-toggle="modal" data-target="#productModal"><i
-                                                    class="icon icon-Search"></i></a>
-                                        </li>
-                                    </ul>
-                                    <button type="button" class="p-cart-btn">Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-text">
-                                <div class="product-rating">
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5><a href="shop.html">Fresh Banana</a></h5>
-                                <div class="pro-price">
-                                    <span class="new-price">$40.00</span>
-                                    <span class="old-price">$43.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="shop.html">
-                                    <img src="{{$common_data['hosts'].'/assets/img/product/3.jpg'}}" alt="">
-                                </a>
-                                <div class="product-hover">
-                                    <ul class="hover-icon-list">
-                                        <li>
-                                            <a href="wishlist.html"><i class="icon icon-Heart"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon icon-Restart"></i></a>
-                                        </li>
-                                        <li><a href="{{$common_data['hosts'].'/assets/img/product/3.jpg'}}"
-                                                data-toggle="modal" data-target="#productModal"><i
-                                                    class="icon icon-Search"></i></a>
-                                        </li>
-                                    </ul>
-                                    <button type="button" class="p-cart-btn">Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-text">
-                                <div class="product-rating">
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5><a href="shop.html">Red Capsicum</a></h5>
-                                <div class="pro-price">
-                                    <span class="new-price">$34.00</span>
-                                    <span class="old-price">$37.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="shop.html">
-                                    <img src="{{$common_data['hosts'].'/assets/img/product/4.jpg'}}" alt="">
-                                </a>
-                                <div class="product-hover">
-                                    <ul class="hover-icon-list">
-                                        <li>
-                                            <a href="wishlist.html"><i class="icon icon-Heart"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon icon-Restart"></i></a>
-                                        </li>
-                                        <li><a href="{{$common_data['hosts'].'/assets/img/product/4.jpg'}}"
-                                                data-toggle="modal" data-target="#productModal"><i
-                                                    class="icon icon-Search"></i></a>
-                                        </li>
-                                    </ul>
-                                    <button type="button" class="p-cart-btn">Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-text">
-                                <div class="product-rating">
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5><a href="shop.html">Rippen Mango</a></h5>
-                                <div class="pro-price">
-                                    <span class="new-price">$20.00</span>
-                                    <span class="old-price">$28.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="shop.html">
-                                    <img src="{{$common_data['hosts'].'/assets/img/product/5.jpg'}}" alt="">
-                                </a>
-                                <div class="product-hover">
-                                    <ul class="hover-icon-list">
-                                        <li>
-                                            <a href="wishlist.html"><i class="icon icon-Heart"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon icon-Restart"></i></a>
-                                        </li>
-                                        <li><a href="{{$common_data['hosts'].'/assets/img/product/5.jpg'}}"
-                                                data-toggle="modal" data-target="#productModal"><i
-                                                    class="icon icon-Search"></i></a>
-                                        </li>
-                                    </ul>
-                                    <button type="button" class="p-cart-btn">Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-text">
-                                <div class="product-rating">
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5><a href="shop.html">Farm's Onion</a></h5>
-                                <div class="pro-price">
-                                    <span class="new-price">$40.00</span>
-                                    <span class="old-price">$50.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="shop.html">
-                                    <img src="{{$common_data['hosts'].'/assets/img/product/6.jpg'}}" alt="">
-                                </a>
-                                <div class="product-hover">
-                                    <ul class="hover-icon-list">
-                                        <li>
-                                            <a href="wishlist.html"><i class="icon icon-Heart"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon icon-Restart"></i></a>
-                                        </li>
-                                        <li><a href="{{$common_data['hosts'].'/assets/img/product/6.jpg'}}"
-                                                data-toggle="modal" data-target="#productModal"><i
-                                                    class="icon icon-Search"></i></a>
-                                        </li>
-                                    </ul>
-                                    <button type="button" class="p-cart-btn">Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-text">
-                                <div class="product-rating">
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5><a href="shop.html">Fresh Coconut</a></h5>
-                                <div class="pro-price">
-                                    <span class="new-price">$50.00</span>
-                                    <span class="old-price">$80.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="shop.html">
-                                    <img src="{{$common_data['hosts'].'/assets/img/product/7.jpg'}}" alt="">
-                                </a>
-                                <div class="product-hover">
-                                    <ul class="hover-icon-list">
-                                        <li>
-                                            <a href="wishlist.html"><i class="icon icon-Heart"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon icon-Restart"></i></a>
-                                        </li>
-                                        <li><a href="{{$common_data['hosts'].'/assets/img/product/7.jpg'}}"
-                                                data-toggle="modal" data-target="#productModal"><i
-                                                    class="icon icon-Search"></i></a>
-                                        </li>
-                                    </ul>
-                                    <button type="button" class="p-cart-btn">Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-text">
-                                <div class="product-rating">
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5><a href="shop.html">Tangerin Juice</a></h5>
-                                <div class="pro-price">
-                                    <span class="new-price">$44.00</span>
-                                    <span class="old-price">$47.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="shop.html">
-                                    <img src="{{$common_data['hosts'].'/assets/img/product/8.jpg'}}" alt="">
-                                </a>
-                                <div class="product-hover">
-                                    <ul class="hover-icon-list">
-                                        <li>
-                                            <a href="wishlist.html"><i class="icon icon-Heart"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon icon-Restart"></i></a>
-                                        </li>
-                                        <li><a href="{{$common_data['hosts'].'/assets/img/product/8.jpg'}}"
-                                                data-toggle="modal" data-target="#productModal"><i
-                                                    class="icon icon-Search"></i></a>
-                                        </li>
-                                    </ul>
-                                    <button type="button" class="p-cart-btn">Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-text">
-                                <div class="product-rating">
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5><a href="shop.html">Pine Apple</a></h5>
-                                <div class="pro-price">
-                                    <span class="new-price">$33.00</span>
-                                    <span class="old-price">$37.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="shop.html">
-                                    <img src="{{$common_data['hosts'].'/assets/img/product/9.jpg'}}" alt="">
-                                </a>
-                                <div class="product-hover">
-                                    <ul class="hover-icon-list">
-                                        <li>
-                                            <a href="wishlist.html"><i class="icon icon-Heart"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon icon-Restart"></i></a>
-                                        </li>
-                                        <li><a href="{{$common_data['hosts'].'/assets/img/product/9.jpg'}}"
-                                                data-toggle="modal" data-target="#productModal"><i
-                                                    class="icon icon-Search"></i></a>
-                                        </li>
-                                    </ul>
-                                    <button type="button" class="p-cart-btn">Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-text">
-                                <div class="product-rating">
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5><a href="shop.html">Fresh Cucumber</a></h5>
-                                <div class="pro-price">
-                                    <span class="new-price">$86.00</span>
-                                    <span class="old-price">$92.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="custom-col">
-                        <div class="single-product-item">
-                            <div class="product-image">
-                                <a href="shop.html">
-                                    <img src="{{$common_data['hosts'].'/assets/img/product/10.jpg'}}" alt="">
-                                </a>
-                                <div class="product-hover">
-                                    <ul class="hover-icon-list">
-                                        <li>
-                                            <a href="wishlist.html"><i class="icon icon-Heart"></i></a>
-                                        </li>
-                                        <li>
-                                            <a href="#"><i class="icon icon-Restart"></i></a>
-                                        </li>
-                                        <li><a href="{{$common_data['hosts'].'/assets/img/product/10.jpg'}}"
-                                                data-toggle="modal" data-target="#productModal"><i
-                                                    class="icon icon-Search"></i></a>
-                                        </li>
-                                    </ul>
-                                    <button type="button" class="p-cart-btn">Add to cart</button>
-                                </div>
-                            </div>
-                            <div class="product-text">
-                                <div class="product-rating">
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o color"></i>
-                                    <i class="fa fa-star-o"></i>
-                                    <i class="fa fa-star-o"></i>
-                                </div>
-                                <h5><a href="shop.html">Fresh Grape</a></h5>
-                                <div class="pro-price">
-                                    <span class="new-price">$40.00</span>
-                                    <span class="old-price">$43.00</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -456,78 +118,25 @@
     <div class="container">
         <div class="custom-row">
             <div class="blog-carousel">
+                @foreach($show_news as $vt_show_news)
                 <div class="custom-col text-center">
                     <div class="single-blog">
                         <div class="blog-image">
-                            <a href="blog-details.html"><img src="{{$common_data['hosts'].'/assets/img/blog/1.jpg'}}"
-                                    alt=""></a>
+                            <a href="{{route('news_detail',$vt_show_news->slug)}}"><img src="{{$common_data['hosts'].'/storage/'.$vt_show_news->image}}"
+                                    alt="{{$vt_show_news->title}}"></a>
                         </div>
                         <div class="blog-text">
-                            <h4><a href="blog-details.html">Coconut improve heart and immunity.</a></h4>
+                            <h4><a href="{{route('news_detail',$vt_show_news->slug)}}">{{$vt_show_news->title}}</a></h4>
                             <div class="post-meta">
-                                <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                                <span class="post-date"> - Oct 30,2018</span>
+                                <!-- <span class="author-name">post by: <span>Naturecircle Themes</span></span> -->
+                                <span class="post-date"> {{$vt_show_news->created_at}}</span>
                             </div>
-                            <p>Coconut milk is one of the healthiest foods on world, health benefits of coconut milk
-                                make it quite .</p>
-                            <a href="blog-details.html" class="default-btn">Xem thêm</a>
+                            <p>{!! $vt_show_news->excerpt !!}</p>
+                            <a href="{{route('news_detail',$vt_show_news->slug)}}" class="default-btn">Xem thêm</a>
                         </div>
                     </div>
                 </div>
-                <div class="custom-col text-center">
-                    <div class="single-blog">
-                        <div class="blog-image">
-                            <a href="blog-details.html"><img src="{{$common_data['hosts'].'/assets/img/blog/2.jpg'}}"
-                                    alt=""></a>
-                        </div>
-                        <div class="blog-text">
-                            <h4><a href="blog-details.html">The most healthful food you can eat.</a></h4>
-                            <div class="post-meta">
-                                <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                                <span class="post-date"> - Sep 11,2018</span>
-                            </div>
-                            <p>Health benefits of apple include improved digestion, prevention of stomach disorders,
-                                gallstones.</p>
-                            <a href="blog-details.html" class="default-btn">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="custom-col text-center">
-                    <div class="single-blog">
-                        <div class="blog-image">
-                            <a href="blog-details.html"><img src="{{$common_data['hosts'].'/assets/img/blog/3.jpg'}}"
-                                    alt=""></a>
-                        </div>
-                        <div class="blog-text">
-                            <h4><a href="blog-details.html">Delicious and nutritious vegetable.</a></h4>
-                            <div class="post-meta">
-                                <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                                <span class="post-date"> - Apr 22,2018</span>
-                            </div>
-                            <p>Research shows drinking beetroot juice benefit digestion, boost athletic performance.
-                                They are a .</p>
-                            <a href="blog-details.html" class="default-btn">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="custom-col text-center">
-                    <div class="single-blog">
-                        <div class="blog-image">
-                            <a href="blog-details.html"><img src="{{$common_data['hosts'].'/assets/img/blog/1.jpg'}}"
-                                    alt=""></a>
-                        </div>
-                        <div class="blog-text">
-                            <h4><a href="blog-details.html">Coconut improve heart and immunity.</a></h4>
-                            <div class="post-meta">
-                                <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                                <span class="post-date"> - Oct 30,2018</span>
-                            </div>
-                            <p>Coconut milk is one of the healthiest foods on world, health benefits of coconut milk
-                                make it quite popular.</p>
-                            <a href="blog-details.html" class="default-btn">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -546,78 +155,25 @@
     <div class="container">
         <div class="custom-row">
             <div class="blog-carousel">
+                @foreach($show_company as $vt_show_company)
                 <div class="custom-col text-center">
                     <div class="single-blog">
                         <div class="blog-image">
-                            <a href="blog-details.html"><img src="{{$common_data['hosts'].'/assets/img/blog/1.jpg'}}"
-                                    alt=""></a>
+                            <a href="{{route('company_activity_detail',$vt_show_company->slug)}}"><img src="{{$common_data['hosts'].'/storage/'.$vt_show_company->image}}"
+                                    alt="{{$vt_show_company->title}}"></a>
                         </div>
                         <div class="blog-text">
-                            <h4><a href="blog-details.html">Coconut improve heart and immunity.</a></h4>
+                            <h4><a href="{{route('company_activity_detail',$vt_show_company->slug)}}">{{$vt_show_company->title}}</a></h4>
                             <div class="post-meta">
-                                <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                                <span class="post-date"> - Oct 30,2018</span>
+                                <!-- <span class="author-name">post by: <span>Naturecircle Themes</span></span> -->
+                                <span class="post-date">{{$vt_show_company->created_at}}</span>
                             </div>
-                            <p>Coconut milk is one of the healthiest foods on world, health benefits of coconut milk
-                                make it quite .</p>
-                            <a href="blog-details.html" class="default-btn">Xem thêm</a>
+                            <p>{!! $vt_show_company->excerpt !!}</p>
+                            <a href="{{route('company_activity_detail',$vt_show_company->slug)}}" class="default-btn">Xem thêm</a>
                         </div>
                     </div>
                 </div>
-                <div class="custom-col text-center">
-                    <div class="single-blog">
-                        <div class="blog-image">
-                            <a href="blog-details.html"><img src="{{$common_data['hosts'].'/assets/img/blog/2.jpg'}}"
-                                    alt=""></a>
-                        </div>
-                        <div class="blog-text">
-                            <h4><a href="blog-details.html">The most healthful food you can eat.</a></h4>
-                            <div class="post-meta">
-                                <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                                <span class="post-date"> - Sep 11,2018</span>
-                            </div>
-                            <p>Health benefits of apple include improved digestion, prevention of stomach disorders,
-                                gallstones.</p>
-                            <a href="blog-details.html" class="default-btn">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="custom-col text-center">
-                    <div class="single-blog">
-                        <div class="blog-image">
-                            <a href="blog-details.html"><img src="{{$common_data['hosts'].'/assets/img/blog/3.jpg'}}"
-                                    alt=""></a>
-                        </div>
-                        <div class="blog-text">
-                            <h4><a href="blog-details.html">Delicious and nutritious vegetable.</a></h4>
-                            <div class="post-meta">
-                                <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                                <span class="post-date"> - Apr 22,2018</span>
-                            </div>
-                            <p>Research shows drinking beetroot juice benefit digestion, boost athletic performance.
-                                They are a .</p>
-                            <a href="blog-details.html" class="default-btn">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="custom-col text-center">
-                    <div class="single-blog">
-                        <div class="blog-image">
-                            <a href="blog-details.html"><img src="{{$common_data['hosts'].'/assets/img/blog/1.jpg'}}"
-                                    alt=""></a>
-                        </div>
-                        <div class="blog-text">
-                            <h4><a href="blog-details.html">Coconut improve heart and immunity.</a></h4>
-                            <div class="post-meta">
-                                <span class="author-name">post by: <span>Naturecircle Themes</span></span>
-                                <span class="post-date"> - Oct 30,2018</span>
-                            </div>
-                            <p>Coconut milk is one of the healthiest foods on world, health benefits of coconut milk
-                                make it quite popular.</p>
-                            <a href="blog-details.html" class="default-btn">Xem thêm</a>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -634,60 +190,18 @@
     </div>
     <div class="container">
         <div class="ht-food-slider row">
+            @foreach($show_barner as $vt_show_barner)
             <div class="col text-center">
                 <div class="single-food-category">
-                    <a href="shop.html" class="food-cat-img"><img
-                            src="{{$common_data['hosts'].'/assets/img/icon/tea.png'}}" alt=""></a>
-                    <img src="{{$common_data['hosts'].'/assets/img/icon/border.png'}}" alt="">
-                    <h4><a href="shop.html">tea</a></h4>
-                    <span>(13 items)</span>
+                    <a href="" class="food-cat-img">
+                        <img
+                            src="{{$common_data['hosts'].'/storage/'.$vt_show_barner->image}}" alt="{{$vt_show_barner->name}}"></a>
+                    <!-- <img src="{{$common_data['hosts'].'/assets/img/icon/border.png'}}" alt=""> -->
+                    <!-- <h4><a href="shop.html">tea</a></h4>
+                    <span>(13 items)</span> -->
                 </div>
             </div>
-            <div class="col text-center">
-                <div class="single-food-category">
-                    <a href="shop.html" class="food-cat-img"><img
-                            src="{{$common_data['hosts'].'/assets/img/icon/burger.png'}}" alt=""></a>
-                    <img src="{{$common_data['hosts'].'/assets/img/icon/border.png'}}" alt="">
-                    <h4><a href="shop.html">bread</a></h4>
-                    <span>(14 items)</span>
-                </div>
-            </div>
-            <div class="col text-center">
-                <div class="single-food-category">
-                    <a href="shop.html" class="food-cat-img"><img
-                            src="{{$common_data['hosts'].'/assets/img/icon/fruit.png'}}" alt=""></a>
-                    <img src="{{$common_data['hosts'].'/assets/img/icon/border.png'}}" alt="">
-                    <h4><a href="shop.html">fruits</a></h4>
-                    <span>(8 items)</span>
-                </div>
-            </div>
-            <div class="col text-center">
-                <div class="single-food-category">
-                    <a href="shop.html" class="food-cat-img"><img
-                            src="{{$common_data['hosts'].'/assets/img/icon/drinks.png'}}" alt=""></a>
-                    <img src="{{$common_data['hosts'].'/assets/img/icon/border.png'}}" alt="">
-                    <h4><a href="shop.html">juices</a></h4>
-                    <span>(11 items)</span>
-                </div>
-            </div>
-            <div class="col text-center">
-                <div class="single-food-category">
-                    <a href="shop.html" class="food-cat-img"><img
-                            src="{{$common_data['hosts'].'/assets/img/icon/vegetable.png'}}" alt=""></a>
-                    <img src="{{$common_data['hosts'].'/assets/img/icon/border.png'}}" alt="">
-                    <h4><a href="shop.html">vegetables</a></h4>
-                    <span>(11 items)</span>
-                </div>
-            </div>
-            <div class="col text-center">
-                <div class="single-food-category">
-                    <a href="shop.html" class="food-cat-img"><img
-                            src="{{$common_data['hosts'].'/assets/img/icon/tea.png'}}" alt=""></a>
-                    <img src="{{$common_data['hosts'].'/assets/img/icon/border.png'}}" alt="">
-                    <h4><a href="shop.html">tea</a></h4>
-                    <span>(13 items)</span>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

@@ -7,8 +7,8 @@
         <nav aria-label="breadcrumb">
             <ul class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Trang chủ</a></li>
-                <li class="breadcrumb-item"><a href="{{route('news')}}">Tin tức</a></li>
-                <li class="breadcrumb-item active" aria-current="page">{{$show_detail_new->title}}</li>
+                <li class="breadcrumb-item"><a href="{{route('company_activity')}}">Tin tức</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{$show_company_detail->title}}</li>
             </ul>
         </nav>
     </div>
@@ -19,24 +19,24 @@
     <div class="container">
         <div class="row">
             <div class="col-xl-9 col-lg-8">
-                {!! $show_detail_new->body !!}
+                {!! $show_company_detail->body !!}
             </div>
             <div class="col-xl-3 col-lg-4">
                 <div class="sidebar-wrapper">
                     <div class="sidebar-widget">
                         <h3>Tin tức liên quan </h3>
                         <div class="sidebar-widget-option-wrapper">
-                            @foreach($show_news as $vt_show_news)
+                            @foreach($show_company_active as $vt_show_company_active)
                             <div class="sidebar-widget-option">
                                 <div class="row">
                                     <div class="col-md-4 col-sm-4">
-                                        <a href="{{route('news_detail',$vt_show_news->slug)}}"><img style="width: 100px;"
-                                                src="{{$common_data['hosts'].'/storage/'.$vt_show_news->image}}"
-                                                alt="{{$vt_show_news->title}}"></a>
+                                        <a href="{{route('news_detail',$vt_show_company_active->slug)}}"><img style="width: 100px;"
+                                                src="{{$common_data['hosts'].'/storage/'.$vt_show_company_active->image}}"
+                                                alt="{{$vt_show_company_active->title}}"></a>
                                     </div>
                                     <div class="col-md-8 col-sm-8" style="padding: 0px 0px 0px 27px;line-height: 1.6;">
                                         <a
-                                            href="{{route('news_detail',$vt_show_news->slug)}}">{{$vt_show_news->title}}</a>
+                                            href="{{route('news_detail',$vt_show_company_active->slug)}}">{{$vt_show_company_active->title}}</a>
                                     </div>
                                 </div>
 
