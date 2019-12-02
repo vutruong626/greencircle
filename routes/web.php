@@ -22,6 +22,12 @@ Route::get('/ve-chung-toi','Frontend\\PageController@About')->name('about');
 // Products ProductController
 Route::get('/san-pham','Frontend\\ProductController@ShowProducts')->name('product');
 Route::get('/chi-tiet-san-pham','Frontend\\ProductController@ShowProductsDetail')->name('product_detail');
+// cart
+Route::get('/gio-hang-cua-ban','Frontend\\ProductController@ShowCart')->name('cart_product');
+Route::post('/cap-nhat-gio-hang','Frontend\\ProductController@UpdataProduct')->name('updata_product');
+// checkout
+Route::get('/thong-tin-khach-hang','Frontend\\ProductController@ShowCheckout')->name('checkout');
+Route::post('/thong-tin-khach-hang','Frontend\\ProductController@postShowCheckout');
 
 // News
 Route::get('/tin-tuc','Frontend\\PageController@ShowNews')->name('news');
@@ -38,10 +44,9 @@ Route::get('/bang-gia','Frontend\\PageController@ShowTablePrice')->name('table_p
 // Contact
 Route::get('/lien-he','Frontend\\PageController@ShowContact')->name('contact');
 
-
-
-
-
+Route::prefix('/cart')->group( function () {
+    Route::get('/{act}/{idsp}/{qty?}','Frontend\\ProductController@handleCart')->name('cart');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

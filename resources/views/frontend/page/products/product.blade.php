@@ -76,7 +76,8 @@
                                                             class="icon icon-Search"></i></a>
                                                 </li>
                                             </ul>
-                                            <button type="button" class="p-cart-btn" style="font-size: 10px;">Thêm vào giỏ hàng</button>
+                                            <!-- <button type="button" class="p-cart-btn" style="font-size: 10px;">Thêm vào giỏ hàng</button> -->
+                                            <a href="{{asset('/cart/add/'.$vt_show_Products->id)}}" class="p-cart-btn" style="font-size: 10px;">Thêm vào giỏ hàng</a>
                                         </div>
                                     </div>
                                     <div class="product-text">
@@ -133,59 +134,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- <div class="sidebar-widget price-widget">
-                        <h3>Price Filter</h3>
-                        <div class="price-slider-container">
-                            <div id="slider-range"></div>
-                            <div class="price_slider_amount">
-                                <div class="slider-values">
-                                    <input type="text" id="amount" name="price" placeholder="Add Your Price" />
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
-                    <!-- <div class="sidebar-widget">
-                        <h3>Color</h3>
-                        <div class="sidebar-widget-option-wrapper">
-                            <div class="sidebar-widget-option">
-                                <input type="checkbox" id="black">
-                                <label for="black">Black <span>(4)</span></label>
-                            </div>
-                            <div class="sidebar-widget-option">
-                                <input type="checkbox" id="blue">
-                                <label for="blue">Blue <span>(3)</span></label>
-                            </div>
-                            <div class="sidebar-widget-option">
-                                <input type="checkbox" id="brown">
-                                <label for="brown">Brown <span>(3)</span></label>
-                            </div>
-                            <div class="sidebar-widget-option">
-                                <input type="checkbox" id="white">
-                                <label for="white">White <span>(3)</span></label>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="sidebar-widget">
-                        <h3>Manufacturer</h3>
-                        <div class="sidebar-widget-option-wrapper">
-                            <div class="sidebar-widget-option">
-                                <input type="checkbox" id="dior">
-                                <label for="dior">Christian Dior <span>(6)</span></label>
-                            </div>
-                            <div class="sidebar-widget-option">
-                                <input type="checkbox" id="ferragamo">
-                                <label for="ferragamo">ferragamo <span>(7)</span></label>
-                            </div>
-                            <div class="sidebar-widget-option">
-                                <input type="checkbox" id="hermes">
-                                <label for="hermes">hermes <span>(8)</span></label>
-                            </div>
-                            <div class="sidebar-widget-option">
-                                <input type="checkbox" id="louis">
-                                <label for="louis">louis vuitton <span>(6)</span></label>
-                            </div>
-                        </div>
-                    </div> -->
                 </div>
                 <div class="sidebar-banner-img">
                     <a href="#"><img src="{{$common_data['hosts'].'/assets/img/banner/6.png'}}" alt=""></a>

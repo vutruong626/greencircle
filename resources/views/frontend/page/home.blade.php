@@ -78,7 +78,9 @@
                                                     class="icon icon-Search"></i></a>
                                         </li>
                                     </ul>
-                                    <button type="button" class="p-cart-btn" style="font-size: 10px;">Thêm vào giỏ hàng</button>
+                                    <!-- <button type="button" class="p-cart-btn" style="font-size: 10px;">Thêm vào giỏ hàng</button> -->
+                                    <a href="{{asset('/cart/add/'.$vt_show_products->id)}}" class="p-cart-btn" style="font-size: 10px;">Thêm vào giỏ hàng</a>
+
                                 </div>
                             </div>
                             <div class="product-text">

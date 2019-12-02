@@ -9015,9 +9015,10 @@ textarea:-ms-input-placeholder {
     font-weight: 300;
 }
 
-.checkout-area form .checkbox-form .checkout-form-list .create-acc #cbox_info>>label {
+
+/* .checkout-area form .checkbox-form .checkout-form-list .create-acc #cbox_info>>label {
     color: #f70000;
-}
+} */
 
 .checkout-area form .checkbox-form .different-address .ship-different-title h3 label {
     color: #2c2c2c;
@@ -10920,4 +10921,29 @@ textarea:-ms-input-placeholder {
 #productModal .modal-dialog .modal-content .quick-view-container .column-right .quick-view-text .share-product .social-link .linkedin:hover {
     background: #005983 none repeat scroll 0 0;
     border-color: #005983;
+}
+
+.update-cart {
+    border: 2px solid #f6f5f1;
+    background: #ffffff;
+    color: #211e1e;
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 51px;
+    /* margin-top: 45px; */
+    text-align: center;
+    width: 30%;
+    border-radius: 30px;
+    -webkit-border-radius: 30px;
+    -moz-border-radius: 30px;
+    font-family: "Oswald", sans-serif;
+    text-transform: uppercase;
+    float: right;
+}
+
+.update-cart:hover {
+    background: #78a206 none repeat scroll 0 0;
+    border-color: #78a206;
+    color: #ffffff;
 }
