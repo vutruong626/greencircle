@@ -12,6 +12,7 @@ use App\Models\Partnere;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\Slider;
+use App\Models\CommentNews;
 
 class PageController extends Controller
 {
