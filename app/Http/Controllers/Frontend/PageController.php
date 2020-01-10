@@ -194,10 +194,30 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function ShowContact()
-    {
-        return view('frontend.page.contacts');
+    // Show Contact
+    public function Contact(){
+        $show_contact = Contact::orderBy('id','DESC')->first();
+        return view('frontend.page.contact',compact('show_contact'));
+    }
 
+    public function postContact(Request $request){
+        $post_contact = new MailContact();
+        $post_contact->name = $request->name;
+        $post_contact->phone = $request->phone;
+        $post_contact->email = $request->email;
+        $post_contact->message = $request->message;
+        $post_contact->save();
+        Mail::send(
+            'frontend.page.mail-contact',
+            [
+                'post_contact' => $post_contact,
+            ],
+            function ($message) use ($post_contact) {
+                $message->from('websitedfm@gmail.com', 'naturecircle.local');
+                $message->to('websitedfm@gmail.com');
+            }
+        );
+        return back()->with('submit_mail',"Bạn đã gửi mail thành công");
     }
     
 }

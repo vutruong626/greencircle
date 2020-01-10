@@ -48,12 +48,11 @@ Route::get('/chi-tiet-hoat-dong-cong-ty/{slug_parent?}/{slug?}','Frontend\\PageC
 // Price List
 Route::get('/bang-gia','Frontend\\PageController@ShowTablePrice')->name('table_price');
 
-// Contact
-Route::get('/lien-he','Frontend\\PageController@ShowContact')->name('contact');
+// Show Contact
+Route::get('/lien-he','Frontend\\PageController@Contact')->name('contact');
+Route::post('/lien-he','Frontend\\PageController@postContact')->name('post_contact');
 
-Route::prefix('/cart')->group( function () {
-    Route::get('/{act}/{idsp}/{qty?}','Frontend\\ProductController@handleCart')->name('cart');
-});
+
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
