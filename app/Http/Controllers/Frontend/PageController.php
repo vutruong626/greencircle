@@ -11,6 +11,7 @@ use App\Models\CompanyActivity;
 use App\Models\Partnere;
 use App\Models\Post;
 use App\Models\Category;
+use App\Models\Slider;
 
 class PageController extends Controller
 {
@@ -21,6 +22,7 @@ class PageController extends Controller
      */
     public function index()
     {
+        $show_slider = Slider::orderBy('number')->get();
         $show_about = About::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->first();
         $show_product = Post::join('categories','categories.id','=','posts.category_id')
                             ->select('posts.*','categories.name','categories.parent_id','categories.slug as slug_parent')
@@ -28,7 +30,7 @@ class PageController extends Controller
         $show_news = News::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->get();
         $show_company = CompanyActivity::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->get();
         $show_barner = Partnere::orderBy('id', 'DESC')->get();
-        return view('frontend.page.home',compact('show_about','show_news','show_company','show_barner','show_product'));
+        return view('frontend.page.home',compact('show_about','show_news','show_company','show_barner','show_product','show_slider'));
     }
 
     /**
