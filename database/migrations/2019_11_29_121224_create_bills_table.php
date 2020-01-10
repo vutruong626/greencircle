@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateBillsTable extends Migration
 {
@@ -16,12 +16,12 @@ class CreateBillsTable extends Migration
         Schema::create('bills', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('email');
             $table->string('phone');
-            $table->string('company')->nullable();
+            $table->string('email');
             $table->string('address');
             $table->string('district');
             $table->string('city');
+            $table->string('code_bill');
             $table->string('note');
             $table->timestamps();
         });

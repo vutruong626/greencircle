@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreateBillDetailsTable extends Migration
 {
@@ -14,11 +14,11 @@ class CreateBillDetailsTable extends Migration
     public function up()
     {
         Schema::create('bill_details', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->integer('post_id');
             $table->integer('bill_id');
-            $table->string('price');
-            $table->string('qty');
+            $table->integer('posts_id');
+            $table->integer('price');
+            $table->integer('qty');
+            $table->primary(['bill_id', 'posts_id']);
             $table->timestamps();
         });
     }
