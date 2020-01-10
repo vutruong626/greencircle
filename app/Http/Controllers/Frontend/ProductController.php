@@ -2,136 +2,242 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\Category;
-use DB;
+use App\Models\Bill;
+use App\Models\BillDetail;
+use Validator;
+use Mail;
+
 class ProductController extends Controller
 {
     /**
-     * Store a newly created resource in storage.
+     * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function ShowProducts()
+    public function ShowProduct($slug = null)
     {
-        $show_Products = Post::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->paginate(3);
-        return view('frontend.page.products.product',compact('show_Products'));
-
+        $show_product = [];
+        if(empty($slug)){
+            $show_category_product = Category::pluck('id')->toArray();
+            if(count($show_category_product) > 0){
+                $show_product = Post::join('categories','categories.id','=','posts.category_id')
+                                        ->select('posts.*','categories.name','categories.parent_id','categories.slug as slug_parent')
+                                        ->whereIn('category_id',$show_category_product)
+                                        ->paginate(12);
+            }
+        }else{
+            $show_category_product = Category::where('slug',$slug)->first();
+            if(!empty($show_category_product)){
+                $show_product = Post::join('categories','categories.id','=','posts.category_id')
+                                    ->select('posts.*','categories.name','categories.parent_id','categories.slug as slug_parent')
+                                    ->where('category_id',$show_category_product->id)
+                                    ->paginate(12);
+            } 
+        }
+        return view('frontend.shop.product',compact('show_product','show_category_product'));
+    }
+    public function SelectCategoryProduct($parent_id = null){
+        $categories = [];
+        if($parent_id > 0 || $parent_id == null){
+          $clause = ['parent_id' => $parent_id];
+          $categories = Category::
+                where($clause)
+                ->get();
+        }else{
+          $categories = Category::get();
+        }
+        return $categories;
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function ShowProductsDetail()
-    {
-        return view('frontend.page.products.product-detail');
-        
-    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function ShowCart(Request $request, $idsp, $qty = 0)
+    public function ShowProductDetail($slug_parent,$slug)
     {
-        $show_sp = Post::first();
-        $data = session()->get('cart');
-        $total = 0;
-        $ids = [];
-        $show_sp = [];
-        $cart_detail = [];
-        if ($qty > 0) {
-            $data[$id] = $qty;
-        }
-        if (count($data) > 0) {
-            foreach ($data as $key => $value) {
-                $greencicle = Post::select('id', 'title', 'image', 'price')
-                    ->where('id', $key)
-                    ->first();
-                $total += $value;
-                @$cart_detail['weight'] += $value * $greencicle->price;
-                $greencicle['qty'] = $value;
-                array_push($show_sp, $greencicle);
-            }
-        } else {
-            @$cart_detail['weight'] = 0;
-        }
-        return view('frontend.page.products.cart',compact('cart_detail', 'show_sp'));
-        
+        $show_product_detail = Post::join('categories','categories.id','=','posts.category_id')
+                                    ->select('posts.*','categories.name','categories.parent_id','categories.order','categories.slug as slug_parent')
+                                    ->where('posts.slug',$slug)->first();
+        $optical_products = Post::join('categories','categories.id','=','posts.category_id')
+                                ->select('posts.*','categories.name','categories.parent_id','categories.slug as slug_parent')
+                                ->get();
+        return view('frontend.shop.product-detail',compact('show_product_detail','optical_products'));
     }
 
+    public function postDetailProduct($action = null, Request $request){
+        $session_products = session()->get('info_products') ?? null;
+        $info_products = [
+            "id" => (int)$request->product ?? 0,
+            "quantity" => (int)$request->quantity ?? 0,
+        ];
+        $tmp_session = [];
+        if(count($session_products) > 0 && $session_products != null){
+            foreach ($session_products as $key => $value) {
+                if((int)$info_products['id'] == $value['id']){
+                    $info_products['quantity'] +=  $value['quantity'];
+                    
+                }else{
+                    $tmp_session[] = $value;
+                }
+            }
+            $tmp_session[] = $info_products;
+        }
+        else  $tmp_session[] = $info_products;
+
+        if(count($tmp_session) > 0)  session()->put('info_products', $tmp_session);
+        return redirect()->route('show_cart');
+    }
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function handleCart($act, $idsp, $qty = 0)
+    public function ShowCart(Request $request)
     {
-        $data = session()->get('cart');
-        // dd($data);
-        if ($act == 'add') {
-            @$data[$idsp]++;
-        }
-        if ($act == 'remove') {
-            unset($data[$idsp]);
-        }
-        if ($qty > 0) {
-            $data[$idsp] = $qty;
-        }
+        $info_products  = session()->get('info_products') ?? null;
+        //handle gio hang
         $cart_detail = [];
-        foreach ($data as $key => $value) {
-            $product = DB::table('posts')
-                            ->select('title', 'price', 'image')
-                            ->where('id', $key)->first();
-            $product->qty = $value;
-            $cart_detail[$key] = $product;
-            @$cart_detail['total'] += $value * $product->price;
+        $cart_total = 0;
+        if(count($info_products) > 0 && $info_products != null){
+            foreach ($info_products as $k => $val) {
+                $product = Post::select('id','title', 'price','image')
+                            ->where('id', $val['id'])->first();
+                if(empty($product)) continue;
+                $product->quantity = $val['quantity'];
+                $cart_detail[] = $product;
+                $cart_total += $val['quantity'] * $product->price;
+            }
         }
-        // dd($cart_detail);
-        session()->put('cart', $data);
-        session()->put('cart_detail', $cart_detail);
-        return redirect()->route('cart_product');
+        return view('frontend.shop.product-cart',compact('cart_detail','cart_total'));
     }
 
+
+    public function deleteCart($id){
+
+        $info_products  = session()->get('info_products') ?? null;
+        $tmp_session = [];
+
+        if($info_products != null && count($info_products) > 0){
+            foreach ($info_products as $key => $value) {
+                if($value['id'] != (int)$id){
+                    $tmp_session[] = $value;
+                }
+            }
+        }
+
+        if(count($tmp_session) > 0)  session()->put('info_products', $tmp_session);
+        if(count($tmp_session) == 0)  session()->forget('info_products');
+        return redirect()->route('show_cart');
+    }
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function UpdataProduct(Request $request)
-    {
-        // dd($request->all());
-        $carts = session()->get('cart');
-        // dd($carts);
-        $params = $request->all();
-        // dd($params);
-        $id_products = $params['id_product'];
-        $num_products = $params['number_product'];
-        for ($i = 0; $i < count($id_products); $i++) {
-            $carts[$id_products[$i]] = $num_products[$i];
+
+    public function addCart($product_id = 0){
+
+        $session_products = session()->get('info_products') ?? null;
+        $tmp_arr = array(
+            'id' => (int)$product_id,
+            'quantity' => 1,
+        );
+        $tmp_session = [];
+        if(count($session_products) > 0 && $session_products != null){
+            foreach ($session_products as $key => $value) {
+                if((int)$product_id == (int)$value['id']){
+                    $tmp_arr['quantity'] += 1;
+                }else{
+                    $tmp_session[] = $value;
+                }
+            }
+            $tmp_session[] = $tmp_arr;
+        }else{
+            $tmp_session[] = $tmp_arr;
         }
-        session()->put('cart', $carts);
-        return redirect()->back()->with('msg', 'The Message');
+        //handle gio hang
+        $cart_detail = [];
+        $cart_total = 0;
+        if(count($tmp_session) > 0){
+
+            foreach ($tmp_session as $k => $val) {
+                $product = Post::select('title','price','image')
+                            ->where('id', $val['id'])->first();
+                $product->quantity = $val['quantity'];
+                $cart_detail[] = $product;
+                $cart_total += $val['quantity'] * $product->price;
+            }
+        }
+        session()->put('info_products', $tmp_session);
+        return redirect()->route('show_cart');
     }
 
+    public function updateCart(Request $request) {
+        $session_products  = session()->get('info_products') ?? null;
+        
+        $id_products = $request->id_product ?? [];
+        $count_products = $request->count_products ?? [];
+
+        //handle info product
+        $cart_detail = [];
+        $tmp_cart_products = [];
+        $cart_total = 0;
+        // $count_products = count($id_products);
+        for ($i=0; $i < count($id_products); $i++) {
+
+            //hadle data seve session
+            $arr_tmp = array(
+                'id' => $id_products[$i],
+                'quantity' => $count_products[$i],
+            );
+            $tmp_cart_products[] = $arr_tmp;
+
+            //handle data show cart
+            $product = Post::select('id','title', 'price','image')
+                        ->where('id', $id_products[$i])->first();
+            if(empty($product)) continue;
+
+            $product->quantity = $count_products[$i];
+            $cart_detail[] = $product;
+            $cart_total += $count_products[$i] * $product->price;
+        }
+
+        if(count($tmp_cart_products) > 0)  session()->put('info_products', $tmp_cart_products);
+
+        return redirect()->back()->with('msg', 'The Message');
+    }
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function ShowCheckout()
+    public function showInfoClient(Request $request)
     {
-        return view('frontend.page.products.checkout');
-        
+        $info_products  = session()->get('info_products') ?? null;
+        //handle gio hang
+        $cart_detail = [];
+        $cart_total = 0;
+        if(count($info_products) > 0 && $info_products != null){
+            foreach ($info_products as $k => $val) {
+                $product = Post::select('id','title', 'price','image')
+                            ->where('id', $val['id'])->first();
+                if(empty($product)) continue;
+
+                $product->quantity = $val['quantity'];
+
+                $cart_detail[] = $product;
+                $cart_total += $val['quantity'] * $product->price;
+            }
+        }
+        return view('frontend.shop.info-client', compact('info_products','cart_total','cart_detail'));
     }
 
     /**
@@ -141,69 +247,88 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function postShowCheckout(Request $request, $idsp, $qty = 0)
-    {
-        // dd($request->all());
+    public function postInfoClient(Request $request){
+        //validate params request
         $rules = [
             'name' => 'required',
             'email' => 'required|email',
             'phone' => 'required',
             'address' => 'required',
+            'district' => 'required',
+            'city' => 'required',
         ];
         $messages = [
             'name.required' => 'Vui lòng nhập họ tên',
-            'address.required' => 'Vui lòng chọn địa chỉ   ',
-            'phone.required' => 'Vui lòng nhập số điện thoại',
             'email.required' => 'Vui lòng nhập email',
             'email.email' => 'Vui lòng nhập đúng định dạng email',
+            'phone.required' => 'Vui lòng nhập số điện thoại',
+            'address.required' => 'Vui lòng chọn địa chỉ   ',
+            'district.required' => 'Vui lòng chọn Quận/huyện',
+            'city.required' => 'Vui lòng chọn Tỉnh/TP',
         ];
         $validator = Validator::make($request->all(), $rules, $messages);
         if ($validator->fails()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            $data_dh = new bills();
-            $data_dh->name = $request->name;
-            $data_dh->phone = $request->phone;
-            $data_dh->address = $request->address;
-            $data_dh->email = trim($request->email);
-            $data_dh->city = $request->city;
-            $data_dh->district = $request->district;
-            $data_dh->company = $request->company;
-            $data_dh->note = $request->note;
-        }
-        if ($data_dh->save()) {
-            $data = session()->get('cart');
-            // update chuyen qua mail
-            $cart_detail = [];
-            $total = 0;
-            foreach ($data as $key => $value) {
-                $greencirle = Post::select('id', 'title', 'image', 'price')
-                    ->where('id', $key)
-                    ->first();
-                $greencirle['qty'] = $value;
-                $total += $value * $greencirle->price; // update chuyen qua mail
-                array_push($cart_detail, $greencirle); // update chuyen qua mail
-                $ctdonhang = new BillDetail();
-                $ctdonhang->qty = $value;
-                $ctdonhang->price = $greencirle->price;
-                $ctdonhang->post_id = $greencirle->id;
-                $ctdonhang->bill_id = $data_dh->id;
-                $ctdonhang->save();
-            }
-            $cart_detail['total'] = $total; // update chuyen qua mail
-        }
-        
-        $area['payment_label'] = trim($request->payment_label);
-        Mail::send('frontend.email.email', ['data_dh' => $data_dh, 'cart_detail' => $cart_detail], function ($message) use ($data_dh) {
-            $message->from('vutruongdfm@gmail.com', 'greencirle.local');
-            $message->subject('Đơn hàng #');
-            $message->bcc($data_dh->email);
-            $message->to('vutruongdfm@gmail.com');
-        });
-        $request->session()->forget('cart');
-        $request->session()->forget('cart_detail');
 
-        return redirect()->route('success');
+            $bill_find = Bill::orderByRaw('cast(code_bill AS SIGNED) DESC')->first();
+            $code_bill = ($bill_find) ? ((int)($bill_find->code_bill) + 1).'' : 1000;
+
+            //hadle save bill
+            $bill = new Bill();
+            $bill->name = $request->name;
+            $bill->email = $request->email;
+            $bill->phone = $request->phone;
+            $bill->address = trim($request->address);
+            $bill->district = $request->district;
+            $bill->city = $request->city;
+            $bill->note = $request->note ?? null;
+            $bill->code_bill = $code_bill;
+            $info_products  = session()->get('info_products') ?? null;
+
+            if ($bill->save()) {
+
+                $cart_detail = [];
+                $cart_total = 0;
+                foreach ($info_products as $key => $value) {
+
+                    $detail_bill = Post::select('id','title', 'price','image')
+                                ->where('id', $value['id'])->first();
+                    if(empty($detail_bill)) continue;
+
+                    $detail_bill->quantity = $value['quantity'];
+
+                    $cart_detail[] = $detail_bill;
+                    $cart_total += $detail_bill->quantity * $detail_bill->price;
+
+                    $bill_detail = new BillDetail();
+                    $bill_detail->qty = $detail_bill->quantity;
+                    $bill_detail->price = $detail_bill->price;
+                    $bill_detail->posts_id = $detail_bill->id;
+                    $bill_detail->bill_id = $bill->id;
+                    $bill_detail->save();
+                }
+            }
+
+            $data_send['bill'] = $bill;
+            Mail::send(
+                'frontend.shop.email',
+                [
+                    'bill' => $bill,
+                    'cart_detail' => $cart_detail,
+                    'cart_total' => $cart_total,
+                ],
+
+                function ($message) use ($data_send) {
+                    $message->from('websitedfm@gmail.com', 'naturecircle.local');
+                    $message->subject('Đơn hàng: '.$data_send['bill']->code_bill);
+                    $message->to($data_send['bill']->email);
+                    $message->bcc('truongdfm@gmail.com');
+                }
+            );
+            $request->session()->forget('info_products');
+            return redirect()->route('success');
+        }
     }
 
     /**
@@ -212,8 +337,8 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function Success()
     {
-        //
+        return view('frontend.shop.success');
     }
 }

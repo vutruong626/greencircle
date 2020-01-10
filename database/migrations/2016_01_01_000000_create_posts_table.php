@@ -18,16 +18,17 @@ class CreatePostsTable extends Migration
             $table->integer('author_id');
             $table->integer('category_id')->nullable();
             $table->string('title');
-            $table->string('price');
-            $table->string('seo_title')->nullable();
             $table->text('excerpt');
             $table->text('body');
             $table->string('image')->nullable();
-            $table->string('numerical_order');
+            $table->json('slides')->nullable();
+            $table->integer('price');
             $table->string('slug')->unique();
-            $table->string('url')->unique();
             $table->text('meta_description');
             $table->text('meta_keywords');
+            $table->string('seo_title')->nullable();
+            $table->string('weight');
+            $table->boolean('active')->default(0);
             $table->timestamps();
 
             //$table->foreign('author_id')->references('id')->on('users');

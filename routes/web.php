@@ -19,15 +19,20 @@ Route::get('/','Frontend\\PageController@index');
 // About
 Route::get('/ve-chung-toi','Frontend\\PageController@About')->name('about');
 
-// Products ProductController
-Route::get('/san-pham','Frontend\\ProductController@ShowProducts')->name('product');
-Route::get('/chi-tiet-san-pham','Frontend\\ProductController@ShowProductsDetail')->name('product_detail');
-// cart
-Route::get('/gio-hang-cua-ban','Frontend\\ProductController@ShowCart')->name('cart_product');
-Route::post('/cap-nhat-gio-hang','Frontend\\ProductController@UpdataProduct')->name('updata_product');
-// checkout
-Route::get('/thong-tin-khach-hang','Frontend\\ProductController@ShowCheckout')->name('checkout');
-Route::post('/thong-tin-khach-hang','Frontend\\ProductController@postShowCheckout');
+// Show Product
+Route::get('/san-pham/{slug?}','Frontend\\ProductController@ShowProduct')->name('show_product');
+Route::get('/chi-tiet-san-pham/{slug_parent?}/{slug?}','Frontend\\ProductController@ShowProductDetail')->name('show_product_detail');
+Route::post('/san-pham','Frontend\\ProductController@postDetailProduct')->name('add_product_cart');
+// Show Cart
+Route::get('/gio-hang','Frontend\\ProductController@ShowCart')->name('show_cart');
+Route::get('/gio-hang/xoa/{id}','Frontend\\ProductController@deleteCart')->name('delete_cart');
+Route::post('/cap-nhat-gio-hang','Frontend\\ProductController@updateCart')->name('update_cart');
+Route::get('/gio-hang/{id?}','Frontend\\ProductController@addCart')->name('add_cart');
+
+// Show info client 
+Route::get('/thong-tin-khach-hang','Frontend\\ProductController@showInfoClient')->name('show_info_client');
+Route::post('/thong-tin-khach-hang','Frontend\\ProductController@postInfoClient')->name('add_info_client');
+Route::get('/thanh-toan-thanh-cong','Frontend\\ProductController@Success')->name('success');
 
 // News
 Route::get('/tin-tuc','Frontend\\PageController@ShowNews')->name('news');
