@@ -41,9 +41,9 @@ Route::get('/chi-tiet/{slug_parent?}/{slug?}','Frontend\\PageController@ShowNews
 Route::post('/comment','Frontend\\PageController@postShowNewsComment')->name('show_news_comment');
 
 
-// Activity of the company
-Route::get('/hoat-dong-cong-ty','Frontend\\PageController@ShowCompanyActivity')->name('company_activity');
-Route::get('/chi-thiet-hoat-dong-cong-ty/{slug?}','Frontend\\PageController@ShowCompanyActivityDetail')->name('company_activity_detail');
+// Company Activity
+Route::get('/hoat-dong-cong-ty/{slug?}','Frontend\\PageController@CompanyActivity')->name('company_activity');
+Route::get('/chi-tiet-hoat-dong-cong-ty/{slug_parent?}/{slug?}','Frontend\\PageController@CompanyActivityDetail')->name('company_activity_detail');
 
 // Price List
 Route::get('/bang-gia','Frontend\\PageController@ShowTablePrice')->name('table_price');

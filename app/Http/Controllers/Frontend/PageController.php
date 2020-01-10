@@ -126,24 +126,55 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function ShowCompanyActivity()
-    {
-        $show_company_active = CompanyActivity::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->paginate(2);
-        return view('frontend.page.company-activity',compact('show_company_active'));
-
+    // Company Activity
+    public function CompanyActivity($slug = null){
+        $show_company = [];
+        if(empty($slug)){
+            $show_category_company = CompanyCategory::pluck('id')->toArray();
+            if(count($show_category_company) > 0){
+                $show_company = CompanyActivy::join('company_categories','company_categories.id','=','company_activies.company_category_id')
+                                                ->select('company_activies.*','company_categories.name','company_categories.slug as slug_parent')
+                                                ->whereIn('company_category_id',$show_category_company)
+                                                ->orderBy('id','DESC')
+                                                ->paginate(8);
+            }
+        }else{
+            $show_category_company = CompanyCategory::where('slug',$slug)->first();
+            if(!empty($show_category_company)){
+                $show_company = CompanyActivy::join('company_categories','company_categories.id','=','company_activies.company_category_id')
+                                                ->select('company_activies.*','company_categories.name','company_categories.slug as slug_parent')
+                                                ->where('company_category_id',$show_category_company->id)
+                                                ->orderBy('id','DESC')
+                                                ->paginate(8);
+            }
+        }
+        return view('frontend.company-activity.company-activity',compact('show_company','show_category_company'));
     }
 
-     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function ShowCompanyActivityDetail($slug){
+    public function SelectCategoryCompany($parent_id = null){
+        $categories = [];
+        if($parent_id > 0 || $parent_id == null){
+          $clause = ['parent_id' => $parent_id];
+          $categories = CompanyCategory::
+                where($clause)
+                ->get();
+        }else{
+          $categories = CompanyCategory::get();
+        }
+        return $categories;
+    }
 
-        $show_company_detail = CompanyActivity::where('slug',$slug)->first();
-        $show_company_active = CompanyActivity::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->paginate(2);
-        return view('frontend.page.company-detail',compact('show_company_active','show_company_detail'));
+    public function CompanyActivityDetail($company_categories,$slug){
+        $show_company = CompanyActivy::join('company_categories','company_categories.id','=','company_activies.company_category_id')
+                            ->select('company_activies.*','company_categories.name','company_categories.slug as slug_parent')
+                            ->where('company_activies.slug',$slug)
+                            ->first();
+        $show_cate_company = CompanyActivy::join('company_categories','company_categories.id','=','company_activies.company_category_id')
+                            ->select('company_activies.*','company_categories.name','company_categories.slug as slug_parent')
+                            ->orderBy('id','DESC')
+                            ->skip(0)->take(8)
+                            ->get();
+        return view('frontend.company-activity.company-detail',compact('show_company','show_cate_company'));                    
     }
     /**
      * Remove the specified resource from storage.
