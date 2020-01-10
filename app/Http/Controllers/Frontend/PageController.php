@@ -28,7 +28,9 @@ class PageController extends Controller
         $show_product = Post::join('categories','categories.id','=','posts.category_id')
                             ->select('posts.*','categories.name','categories.parent_id','categories.slug as slug_parent')
                             ->orderBy('weight')->get();
-        $show_news = News::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->get();
+        $show_news = News::join('news_categories','news_categories.id','=','news.category_id')
+                            ->select('news.*','news_categories.name','news_categories.parent_id','news_categories.slug as slug_parent')
+                            ->orderBy('id','DESC')->get();
         $show_company = CompanyActivity::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->get();
         $show_barner = Partnere::orderBy('id', 'DESC')->get();
         return view('frontend.page.home',compact('show_about','show_news','show_company','show_barner','show_product','show_slider'));
