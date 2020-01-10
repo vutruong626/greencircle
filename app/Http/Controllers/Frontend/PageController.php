@@ -22,11 +22,13 @@ class PageController extends Controller
     public function index()
     {
         $show_about = About::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->first();
-        $show_products = Post::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->get();
+        $show_product = Post::join('categories','categories.id','=','posts.category_id')
+                            ->select('posts.*','categories.name','categories.parent_id','categories.slug as slug_parent')
+                            ->orderBy('weight')->get();
         $show_news = News::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->get();
         $show_company = CompanyActivity::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->get();
         $show_barner = Partnere::orderBy('id', 'DESC')->get();
-        return view('frontend.page.home',compact('show_about','show_news','show_company','show_barner','show_products'));
+        return view('frontend.page.home',compact('show_about','show_news','show_company','show_barner','show_product'));
     }
 
     /**

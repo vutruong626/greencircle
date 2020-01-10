@@ -43,44 +43,44 @@
     </div>
 </div>
 <!-- Banner Area End -->
-
 <!-- Protuct Area Start -->
 <div class="product-area bg-1 pt-110 pb-80">
     <div class="container">
         <div class="section-title text-center">
             <div class="section-img d-flex justify-content-center">
-                <img src="{{$common_data['hosts'].'/assets/img/icon/title.png'}}" alt="">
+                <img src="assets/img/icon/title.png" alt="">
             </div>
-            <h2><span>Sản phẩm đặc trưng </span>Greencircl</h2>
+            <h2><span>Sản phẩm đặc trưng </span>NatureCircle</h2>
         </div>
     </div>
     <div class="container">
+        <div class="product-tab-list nav" role="tablist">
+            <!-- <a class="active" href="#tab1" data-toggle="tab" role="tab" aria-selected="true"
+                aria-controls="tab1">vegetables</a>
+            <a href="#tab2" data-toggle="tab" role="tab" aria-selected="false" aria-controls="tab2">fruits</a>
+            <a href="#tab3" data-toggle="tab" role="tab" aria-selected="false" aria-controls="tab3">juices</a>
+            <a href="#tab4" data-toggle="tab" role="tab" aria-selected="false" aria-controls="tab4">bread</a> -->
+        </div>
         <div class="tab-content text-center">
             <div class="tab-pane active show fade" id="tab1" role="tabpanel">
                 <div class="product-carousel">
-                    @foreach($show_products as $vt_show_products)
+                    @foreach($show_product as $vt_show_product)
                     <div class="custom-col">
                         <div class="single-product-item">
                             <div class="product-image">
-                                <a href="shop.html">
-                                    <img src="{{$common_data['hosts'].'/storage/'.$vt_show_products->image}}" alt="{{$vt_show_products->title}}">
+                                <a href="{{route('show_product_detail',[$vt_show_product->slug_parent,$vt_show_product->slug])}}">
+                                    <img src="{{('storage/'.$vt_show_product->image)}}" alt="{{$vt_show_product->title}}">
                                 </a>
                                 <div class="product-hover">
                                     <ul class="hover-icon-list">
-                                        <!-- <li>
-                                            <a href=""><i class="icon icon-Heart"></i></a>
-                                        </li> -->
+                                        
                                         <li>
                                             <a href="#"><i class="icon icon-Restart"></i></a>
                                         </li>
-                                        <li><a href="{{$common_data['hosts'].'/storage/'.$vt_show_products->image}}"
-                                                data-toggle="modal" data-target="#productModal"><i
-                                                    class="icon icon-Search"></i></a>
-                                        </li>
+                                        <li><a href="{{('storage/'.$vt_show_product->image)}}" ><i class="icon icon-Search"></i></a></li>
                                     </ul>
-                                    <!-- <button type="button" class="p-cart-btn" style="font-size: 10px;">Thêm vào giỏ hàng</button> -->
-                                    <a href="{{asset('/cart/add/'.$vt_show_products->id)}}" class="p-cart-btn" style="font-size: 10px;">Thêm vào giỏ hàng</a>
-
+                                    <!-- <button type="button" class="p-cart-btn">Add to cart</button> -->
+                                    <a href="{{route('add_cart',$vt_show_product->id)}}" class="p-cart-btn">Thêm vào giỏ hàng</a>
                                 </div>
                             </div>
                             <div class="product-text">
@@ -91,9 +91,9 @@
                                     <i class="fa fa-star-o"></i>
                                     <i class="fa fa-star-o"></i>
                                 </div>
-                                <h5><a href="shop.html">{{$vt_show_products->title}}</a></h5>
+                                <h5><a href="{{route('show_product_detail',[$vt_show_product->slug_parent,$vt_show_product->slug])}}">{{$vt_show_product->title}}</a></h5>
                                 <div class="pro-price">
-                                    <span class="new-price">{{number_format($vt_show_products->price)}} VNĐ</span>
+                                    <span class="new-price">{{number_format($vt_show_product->price)}} VNĐ</span>
                                     <!-- <span class="old-price">$92.00</span> -->
                                 </div>
                             </div>
@@ -102,6 +102,7 @@
                     @endforeach
                 </div>
             </div>
+            
         </div>
     </div>
 </div>
