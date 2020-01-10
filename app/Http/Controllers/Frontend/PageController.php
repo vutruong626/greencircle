@@ -53,34 +53,70 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function ShowNews()
-    {
-        $show_news = News::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->paginate(2);
-        $show_cate_news = CategoryNews::orderBy('id', 'DESC')->get();
-        return view('frontend.page.news',compact('show_news','show_cate_news'));
-        
-    }
-    public function getAjaxCategoryNews(Request $request,$show_category_news){
-        if($show_category_news > 0){
-            return News::where('category_news_id', $show_category_news)->get();
+   // Show News
+    public function ShowNews($slug = null){
+        $show_news = [];
+        if(empty($slug)){
+            $show_category_news = NewsCategory::pluck('id')->toArray();
+            if(count($show_category_news) > 0){
+                $show_news = News::join('news_categories','news_categories.id','=','news.category_id')
+                ->select('news.*','news_categories.name','news_categories.parent_id','news_categories.slug as slug_parent')
+                ->whereIn('category_id',$show_category_news)
+                ->orderBy('id','DESC')
+                ->paginate(12);
+            }
+        }else{
+            $show_category_news = NewsCategory::where('slug',$slug)->first();
+            if(!empty($show_category_news)){
+                $show_news = News::join('news_categories','news_categories.id','=','news.category_id')
+                    ->select('news.*','news_categories.name','news_categories.parent_id','news_categories.slug as slug_parent')
+                    ->where('category_id',$show_category_news->id)
+                    ->orderBy('id','DESC')
+                    ->paginate(12);
+            } 
         }
-
-    }
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function ShowNewsDetail($slug)
-    {
-        $show_news = News::orderBy('numerical_order','ASC')->orderBy('id', 'DESC')->get();
-        $show_detail_new = News::where('slug',$slug)->first();
-        return view('frontend.page.news-detail',compact('show_detail_new','show_news'));
         
+        return view('frontend.news.news',compact('show_news','show_category_news'));
     }
 
+    public function SelectCategory($parent_id = null){
+        $categories = [];
+        if($parent_id > 0 || $parent_id == null){
+        $clause = ['parent_id' => $parent_id];
+        $categories = NewsCategory::
+                where($clause)
+                ->get();
+        }else{
+        $categories = NewsCategory::get();
+        }
+        return $categories;
+    }
+
+
+    public function ShowNewsDetail($news_categories,$slug){
+
+        $show_news = News::join('news_categories','news_categories.id','=','news.category_id')
+                            ->select('news.*','news_categories.name','news_categories.parent_id','news_categories.slug as slug_parent')
+                            ->where('news.slug',$slug)
+                            ->first();
+        $show_news_list = News::join('news_categories','news_categories.id','=','news.category_id')
+                            ->select('news.*','news_categories.name','news_categories.parent_id','news_categories.slug as slug_parent')
+                            ->orderBy('id','DESC')->get();
+        $show_comment_news = CommentNews::where('active','>', 0)->orderBy('id','DESC')->get();
+        // dd($show_comment_news);
+        return view('frontend.news.news-detail',compact('show_news','show_news_list','show_comment_news'));
+    }
+
+    public function postShowNewsComment(Request $request){
+        $comment = new CommentNews();
+        $comment->name = $request->name;
+        $comment->email = $request->email;
+        $comment->body = $request->body;
+        $comment->user_id = $request->user_id == 1;
+        $comment->news_id = $request->news_id;
+        $comment->save();
+        return back()->with('success',"Bạn đã gửi bình luận thành công");
+    }
     /**
      * Remove the specified resource from storage.
      *
