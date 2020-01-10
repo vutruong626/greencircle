@@ -24,11 +24,11 @@
 <body>
 
     <!-- Header Area Start -->
-    @include('frontend.page-main.header')
+    @include('frontend.include.menu')
     <!-- Header Area End -->
     @yield('content')
     <!-- Footer Area Start -->
-    @include('frontend.page-main.footer')
+    @include('frontend.include.footer')
     <!-- Footer Area End -->
     <!-- QUICKVIEW PRODUCT -->
     <div class="modal fade" id="productModal" tabindex="-1" role="dialog">

@@ -1,7 +1,7 @@
 @extends('frontend.frontend')
 @section('content')
 <!-- Hero Area Start -->
-@include('frontend.page-main.slider')
+@include('frontend.include.slider')
     <!-- Hero Area End -->
 <!-- Banner Area Start -->
 <div class="banner-area banner-one-area bg-2 fix pt-60 pb-80">
