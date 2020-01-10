@@ -113,9 +113,9 @@
     <div class="container">
         <div class="section-title text-center mb-50">
             <div class="section-img d-flex justify-content-center">
-                <img src="{{$common_data['hosts'].'/assets/img/icon/title.png'}}" alt="">
+                <img src="assets/img/icon/title.png" alt="">
             </div>
-            <h2><span>Tin tức & Sự kiện </span>Greencircl</h2>
+            <h2><span>Tin Tức & Sự Kiện </span>NatureCircle</h2>
         </div>
     </div>
     <div class="container">
@@ -125,21 +125,22 @@
                 <div class="custom-col text-center">
                     <div class="single-blog">
                         <div class="blog-image">
-                            <a href="{{route('news_detail',$vt_show_news->slug)}}"><img src="{{$common_data['hosts'].'/storage/'.$vt_show_news->image}}"
-                                    alt="{{$vt_show_news->title}}"></a>
+                            <a href="{{route('show_news_detail',[$vt_show_news->slug_parent,$vt_show_news->slug])}}">
+                                <img src="{{('storage/'.$vt_show_news->image)}}" alt="{{$vt_show_news->title}}">
+                            </a>
                         </div>
                         <div class="blog-text">
-                            <h4><a href="{{route('news_detail',$vt_show_news->slug)}}">{{$vt_show_news->title}}</a></h4>
+                            <h4><a href="{{route('show_news_detail',[$vt_show_news->slug_parent,$vt_show_news->slug])}}">{{$vt_show_news->title}}</a></h4>
                             <div class="post-meta">
-                                <!-- <span class="author-name">post by: <span>Naturecircle Themes</span></span> -->
-                                <span class="post-date"> {{$vt_show_news->created_at}}</span>
+                                <span class="author-name">Danh mục: <span>{{$vt_show_news->name}}</span></span>
+                                <span class="post-date"> | {{$vt_show_news->created_at}}</span>
                             </div>
-                            <p>{!! $vt_show_news->excerpt !!}</p>
-                            <a href="{{route('news_detail',$vt_show_news->slug)}}" class="default-btn">Xem thêm</a>
+                            {!! $vt_show_news->excerpt !!}
+                            <a href="{{route('show_news_detail',[$vt_show_news->slug_parent,$vt_show_news->slug])}}" class="default-btn">Đọc thêm</a>
                         </div>
                     </div>
                 </div>
-                @endforeach
+               @endforeach
             </div>
         </div>
     </div>
