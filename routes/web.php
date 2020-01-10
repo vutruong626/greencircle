@@ -34,10 +34,12 @@ Route::get('/thong-tin-khach-hang','Frontend\\ProductController@showInfoClient')
 Route::post('/thong-tin-khach-hang','Frontend\\ProductController@postInfoClient')->name('add_info_client');
 Route::get('/thanh-toan-thanh-cong','Frontend\\ProductController@Success')->name('success');
 
-// News
-Route::get('/tin-tuc','Frontend\\PageController@ShowNews')->name('news');
-Route::get('/chi-tiet-tin-tuc/{slug?}','Frontend\\PageController@ShowNewsDetail')->name('news_detail');
-Route::get('/getAjaxCategoryNews/{show_category_news}','Frontend\\PageController@getAjaxCategoryNews');
+
+// Show News
+Route::get('/tin-tuc/{slug?}','Frontend\\PageController@ShowNews')->name('show_news');
+Route::get('/chi-tiet/{slug_parent?}/{slug?}','Frontend\\PageController@ShowNewsDetail')->name('show_news_detail');
+Route::post('/comment','Frontend\\PageController@postShowNewsComment')->name('show_news_comment');
+
 
 // Activity of the company
 Route::get('/hoat-dong-cong-ty','Frontend\\PageController@ShowCompanyActivity')->name('company_activity');
