@@ -25,6 +25,8 @@
 
     <!-- Header Area Start -->
     @include('frontend.include.menu')
+    
+    @include('frontend.page.info-err')
     <!-- Header Area End -->
     @yield('content')
     <!-- Footer Area Start -->
