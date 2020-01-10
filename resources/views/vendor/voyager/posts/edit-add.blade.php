@@ -99,6 +99,26 @@
                         </div>
                     </div>
 
+                    <!-- ### EXCERPT ### -->
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{!! __('voyager::post.excerpt') !!}</h3>
+                            <div class="panel-actions">
+                                <a class="panel-action voyager-angle-down" data-toggle="panel-collapse" aria-hidden="true"></a>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            @include('voyager::multilingual.input-hidden', [
+                                '_field_name'  => 'excerpt',
+                                '_field_trans' => get_field_translations($dataTypeContent, 'excerpt')
+                            ])
+                            @php
+                                $dataTypeRows = $dataType->{(isset($dataTypeContent->id) ? 'editRows' : 'addRows' )};
+                                $row = $dataTypeRows->where('field', 'excerpt')->first();
+                            @endphp
+                            {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
+                        </div>
+                    </div>
                     <!-- ### CONTENT ### -->
                     <div class="panel">
                         <div class="panel-heading">
@@ -121,27 +141,7 @@
                         </div>
                     </div><!-- .panel -->
 
-                    <!-- ### EXCERPT ### -->
-                    <div class="panel">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">{!! __('voyager::post.excerpt') !!}</h3>
-                            <div class="panel-actions">
-                                <a class="panel-action voyager-resize-full" data-toggle="panel-fullscreen" aria-hidden="true"></a>
-                            </div>
-                        </div>
-
-                        <div class="panel-body">
-                            @include('voyager::multilingual.input-hidden', [
-                                '_field_name'  => 'excerpt',
-                                '_field_trans' => get_field_translations($dataTypeContent, 'excerpt')
-                            ])
-                            @php
-                                $dataTypeRows = $dataType->{(isset($dataTypeContent->id) ? 'editRows' : 'addRows' )};
-                                $row = $dataTypeRows->where('field', 'excerpt')->first();
-                            @endphp
-                            {!! app('voyager')->formField($row, $dataType, $dataTypeContent) !!}
-                        </div>
-                    </div><!-- .panel -->
+                    
 
                     <div class="panel">
                         <div class="panel-heading">
@@ -209,13 +209,14 @@
                             <div class="form-group">
                                 <label for="category_id">{{ __('voyager::post.category') }}</label>
                                 <select class="form-control" name="category_id">
-                                    @foreach(Voyager::model('Category')::all() as $category)
+                                    @foreach(App\Models\Category::all() as $category)
                                         <option value="{{ $category->id }}"@if(isset($dataTypeContent->category_id) && $dataTypeContent->category_id == $category->id) selected="selected"@endif>{{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
                         </div>
                     </div>
+
                     <!-- ### IMAGE ### -->
                     <div class="panel panel-bordered panel-primary">
                         <div class="panel-heading">
