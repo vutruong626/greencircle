@@ -16,6 +16,8 @@
     <link rel="stylesheet" href="{{$common_data['hosts'].'/assets/css/plugins.css'}}">
     <link rel="stylesheet" href="{{$common_data['hosts'].'/assets/css/style.css'}}">
     <script src="{{$common_data['hosts'].'/assets/js/vendor/modernizr-3.5.0.min.js'}}"></script>
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=vietnamese" rel="stylesheet">
     
 </head>
 

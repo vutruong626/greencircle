@@ -56,7 +56,10 @@
 
 /*-- Google Font --*/
 
-@import url("https://fonts.googleapis.com/css?family=Oswald:200,500,600|Playfair+Display:700,900|Poppins:400,500,600,700|Sacramento");
+
+/* @import url("https://fonts.googleapis.com/css?family=Oswald:200,500,600|Playfair+Display:700,900|Poppins:400,500,600,700|Sacramento"); */
+
+@import url("https://fonts.googleapis.com/css?family=Roboto:300i,400,400i,500,500i,700,700i,900,900i&display=swap&subset=vietnamese");
 
 /*-- Common Style --*/
 
@@ -74,11 +77,11 @@ body {
 
 body {
     line-height: 24px;
-    font-size: 12px;
+    font-size: 14px;
     font-style: normal;
     font-weight: normal;
     visibility: visible;
-    font-family: "Poppins", sans-serif;
+    font-family: "Roboto", "Poppins", sans-serif;
     color: #696969;
 }
 
@@ -989,7 +992,7 @@ textarea:-ms-input-placeholder {
 #scrollUp {
     width: 40px;
     height: 40px;
-    background-color: #78a206;
+    background-color: #80B800;
     color: #ffffff;
     right: 20px;
     bottom: 50px;
@@ -1086,7 +1089,7 @@ textarea:-ms-input-placeholder {
 
 .section-title h2 {
     color: #202226;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 30px;
     font-weight: 500;
     line-height: 25px;
@@ -1119,7 +1122,7 @@ textarea:-ms-input-placeholder {
 }
 
 .section-title.section-title-four h4 {
-    font-family: 'Sacramento', cursive;
+    font-family: 'Roboto', 'Sacramento', cursive;
     color: #c5ac57;
     font-size: 30px;
     line-height: 32px;
@@ -1531,7 +1534,7 @@ textarea:-ms-input-placeholder {
     -moz-border-radius: 25px;
     color: #2c2c2c;
     display: inline-block;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 12px;
     font-weight: 500;
     line-height: 43px;
@@ -1584,7 +1587,7 @@ textarea:-ms-input-placeholder {
     font-weight: 600;
     color: #292929;
     text-transform: uppercase;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 @media only screen and (max-width: 767px) {
@@ -1649,7 +1652,7 @@ textarea:-ms-input-placeholder {
 }
 
 .header-area .header-container {
-    padding: 0 60px;
+    padding: 0 110px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -1940,6 +1943,7 @@ textarea:-ms-input-placeholder {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
+    float: right;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -1972,9 +1976,9 @@ textarea:-ms-input-placeholder {
 .ht-main-menu nav>ul>li>a {
     color: #444444;
     display: block;
-    font-family: "Oswald", sans-serif;
-    font-size: 13px;
-    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 700;
     line-height: 50px;
     position: relative;
     text-transform: uppercase;
@@ -2078,7 +2082,7 @@ textarea:-ms-input-placeholder {
 
 .ht-main-menu>nav>ul>li>.ht-mega-menu>li>ul>li.mega-menu-title {
     color: #292929;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     line-height: 1.42857;
     margin-bottom: 15px;
     text-transform: uppercase;
@@ -2259,7 +2263,7 @@ textarea:-ms-input-placeholder {
     -webkit-box-shadow: none;
     box-shadow: none;
     color: #ffffff;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 12px;
     height: 47px;
     margin: 0;
@@ -2300,7 +2304,7 @@ textarea:-ms-input-placeholder {
     -moz-border-radius: 3px;
     -webkit-box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 0 50px 0 rgba(0, 0, 0, 0.1);
-    padding: 35px 40px 21px;
+    padding: 35px 25px 21px;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -2504,7 +2508,7 @@ textarea:-ms-input-placeholder {
 .header-content>div>.cart-item-wrapper>.single-cart-item>.cart-text-btn>.cart-text>span {
     color: #969696;
     display: block;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 500;
     margin-bottom: 4px;
 }
@@ -2569,7 +2573,7 @@ textarea:-ms-input-placeholder {
     -moz-border-radius: 25px;
     color: #ffffff;
     display: inline-block;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 12px;
     line-height: 43px;
     margin: 0 7px;
@@ -2607,7 +2611,7 @@ textarea:-ms-input-placeholder {
 
 .header-content>div>.cart-item-wrapper>.cart-price-total>.cart-price-info>span {
     color: #3e3d43;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 500;
     line-height: 23px;
@@ -2670,7 +2674,7 @@ textarea:-ms-input-placeholder {
     padding: 2px 0;
     cursor: pointer;
     display: block;
-    font-family: Oswald, Arial, Helvetica, sans-serif;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
     font-weight: 400;
     height: 22px;
     line-height: 22px;
@@ -2854,7 +2858,7 @@ textarea:-ms-input-placeholder {
 .modal .modal-dialog .modal-content .modal-body .form-pop-up-content h2 {
     background: #202226 none repeat scroll 0 0;
     color: #ffffff;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 18px;
     line-height: 1.35;
     margin: 0;
@@ -2910,12 +2914,15 @@ textarea:-ms-input-placeholder {
     -moz-border-radius: 3px;
     color: #ffffff;
     display: inline-block;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 500;
     line-height: 50px;
     padding: 0 30px;
     text-transform: uppercase;
+    tibility - 9,
+    000,
+    000
 }
 
 .modal .modal-dialog .modal-content .modal-body .form-pop-up-content form button:hover {
@@ -3131,7 +3138,7 @@ textarea:-ms-input-placeholder {
 
 .ht-hero-content-one h1 {
     color: #2c2c2c;
-    font-family: "Playfair Display", serif;
+    font-family: "Roboto", "Playfair Display", serif;
     font-size: 100px;
     font-weight: 700;
     line-height: 0.85;
@@ -3558,7 +3565,7 @@ textarea:-ms-input-placeholder {
 
 .food-category-area .ht-food-slider .single-food-category>h4>a {
     color: #6c8e01;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 18px;
     font-weight: 500;
     text-transform: capitalize;
@@ -3905,14 +3912,14 @@ textarea:-ms-input-placeholder {
     bottom: -34.9%;
     color: #2c2c2c;
     display: block;
-    font-family: "Oswald", sans-serif;
-    font-size: 12px;
-    font-weight: 500;
+    font-family: "Roboto", sans-serif;
+    font-size: 10px;
+    font-weight: 600;
     left: 50%;
     line-height: 39px;
     margin: auto;
     opacity: 0;
-    padding: 0 25px;
+    padding: 0 10px;
     position: absolute;
     -webkit-transform: translateX(-50%);
     -ms-transform: translateX(-50%);
@@ -4005,7 +4012,7 @@ textarea:-ms-input-placeholder {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     -webkit-box-pack: center;
     -ms-flex-pack: center;
@@ -4226,7 +4233,7 @@ textarea:-ms-input-placeholder {
 .timer-product-area .timer-carousel .single-product-item .product-image .timer .timer-grid .cdown {
     color: #939393;
     display: inline-block;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 200;
     margin: 0 8px;
@@ -4762,7 +4769,7 @@ textarea:-ms-input-placeholder {
     line-height: 55px;
     margin: 0;
     text-transform: capitalize;
-    font-family: "Playfair Display", serif;
+    font-family: "Roboto", "Playfair Display", serif;
 }
 
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
@@ -4926,7 +4933,7 @@ textarea:-ms-input-placeholder {
     border: 2px solid #e1e1e1;
     color: #2c2c2c;
     text-transform: uppercase;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     padding: 8px 35px 10px;
     border-radius: 50px;
 }
@@ -5365,7 +5372,7 @@ textarea:-ms-input-placeholder {
     font-size: 12px;
     color: #a4a4a4;
     letter-spacing: 6px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     padding-top: 12px;
     margin-bottom: 36px;
@@ -5453,7 +5460,7 @@ textarea:-ms-input-placeholder {
     font-size: 12px;
     color: #a4a4a4;
     letter-spacing: 6px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     padding-top: 12px;
     margin-bottom: 30px;
@@ -5597,7 +5604,7 @@ textarea:-ms-input-placeholder {
 
 .featured-area .col-lg-4 .featured-carousel-wrapper>h3 {
     color: #a9a9a9;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 200;
     margin-bottom: 6px;
 }
@@ -5730,7 +5737,7 @@ textarea:-ms-input-placeholder {
 }
 
 .featured-area .col-lg-4 .featured-carousel-wrapper .feaured-carousel .single-featured-carousel .single-featured-item .product-text .pro-price {
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 600;
 }
 
@@ -5936,7 +5943,7 @@ textarea:-ms-input-placeholder {
 
 .testimonial-area .testimonial-slider-wrapper .image-carousel .testi-img h4 {
     color: #211e1e;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 14px;
     font-weight: 600;
     margin-top: 10px;
@@ -6187,7 +6194,7 @@ textarea:-ms-input-placeholder {
 
 .blog-area .single-blog .blog-text h4 {
     color: #202226;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 500;
     margin-bottom: 7px;
 }
@@ -7015,7 +7022,7 @@ textarea:-ms-input-placeholder {
 
 .newsletter-container h2 {
     color: #202226;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 24px;
     line-height: 25px;
     margin-bottom: 17px;
@@ -7309,7 +7316,7 @@ textarea:-ms-input-placeholder {
 
 .footer-area .footer-top .service-area .service-container .service-content .single-service .service-text h3 {
     color: #202226;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 18px;
     font-weight: 500;
     line-height: 1.35;
@@ -7369,7 +7376,7 @@ textarea:-ms-input-placeholder {
 
 .footer-area .footer-top .footer-widget-area .single-footer-widget h3 {
     color: #202226;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 18px;
     font-weight: 500;
     margin-bottom: 32px;
@@ -8304,7 +8311,7 @@ textarea:-ms-input-placeholder {
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     font-size: 12px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
 }
 
@@ -8448,7 +8455,7 @@ textarea:-ms-input-placeholder {
     border-radius: 30px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
 }
 
@@ -8481,7 +8488,7 @@ textarea:-ms-input-placeholder {
     border-radius: 30px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
 }
 
@@ -8501,7 +8508,7 @@ textarea:-ms-input-placeholder {
 
 .cart-area .table-total-wrapper,
 .wishlist-area .table-total-wrapper {
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -8619,7 +8626,7 @@ textarea:-ms-input-placeholder {
     border-radius: 30px;
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
 }
 
@@ -8835,7 +8842,7 @@ textarea:-ms-input-placeholder {
     -o-transition: all 0.3s ease 0s;
     transition: all 0.3s ease 0s;
     width: auto;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     text-transform: uppercase;
     padding: 0 37px;
     line-height: 40px;
@@ -8944,7 +8951,7 @@ textarea:-ms-input-placeholder {
     padding-left: 3px;
     width: 100%;
     font-weight: 600;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .checkout-area form .checkbox-form .country-select {
@@ -9015,10 +9022,9 @@ textarea:-ms-input-placeholder {
     font-weight: 300;
 }
 
-
-/* .checkout-area form .checkbox-form .checkout-form-list .create-acc #cbox_info>>label {
+.checkout-area form .checkbox-form .checkout-form-list .create-acc #cbox_info>>label {
     color: #f70000;
-} */
+}
 
 .checkout-area form .checkbox-form .different-address .ship-different-title h3 label {
     color: #2c2c2c;
@@ -9078,7 +9084,7 @@ textarea:-ms-input-placeholder {
     margin: 0 0 20px;
     padding-bottom: 11px;
     text-transform: uppercase;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-weight: 600;
 }
 
@@ -9444,7 +9450,7 @@ textarea:-ms-input-placeholder {
     font-size: 16px;
     font-weight: 600;
     font-weight: 600;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     padding-top: 5px;
 }
 
@@ -10002,7 +10008,7 @@ textarea:-ms-input-placeholder {
     color: #252525;
     line-height: 24px;
     border-bottom: 1px solid #e1e1e1;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     padding-bottom: 10px;
     margin-bottom: 36px;
 }
@@ -10018,7 +10024,7 @@ textarea:-ms-input-placeholder {
 }
 
 .sidebar-wrapper .sidebar-widget h3 {
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     line-height: 30px;
     font-size: 14px;
     text-transform: uppercase;
@@ -10100,7 +10106,7 @@ textarea:-ms-input-placeholder {
 .sidebar-wrapper .sidebar-widget .price_slider_amount .slider-values input {
     font-weight: 500;
     color: #000000;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     border: 0;
     background: transparent;
     height: 12px;
@@ -10214,7 +10220,7 @@ textarea:-ms-input-placeholder {
     font-size: 30px;
     line-height: 22px;
     margin-bottom: 45px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 @media only screen and (max-width: 767px) {
@@ -10320,7 +10326,7 @@ textarea:-ms-input-placeholder {
     font-size: 30px;
     line-height: 22px;
     margin-bottom: 39px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 @media only screen and (max-width: 767px) {
@@ -10399,7 +10405,7 @@ textarea:-ms-input-placeholder {
     color: #222222;
     font-size: 24px;
     margin-bottom: 7px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 .contact-area .contact-address .working-time span span {
@@ -10457,7 +10463,7 @@ textarea:-ms-input-placeholder {
     background: transparent;
     -webkit-box-shadow: inset 0 0 0 1px #ffffff;
     box-shadow: inset 0 0 0 1px #ffffff;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
     font-size: 12px;
     width: 35px;
     height: 35px;
@@ -10521,7 +10527,7 @@ textarea:-ms-input-placeholder {
     line-height: 26px;
     margin-bottom: 31px;
     text-transform: uppercase;
-    font-family: oswald;
+    font-family: Roboto;
     letter-spacing: .5px;
 }
 
@@ -10770,7 +10776,7 @@ textarea:-ms-input-placeholder {
     font-weight: 600;
     line-height: 24px;
     margin-bottom: 18px;
-    font-family: "Oswald", sans-serif;
+    font-family: "Roboto", sans-serif;
 }
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {
@@ -10923,27 +10929,103 @@ textarea:-ms-input-placeholder {
     border-color: #005983;
 }
 
-.update-cart {
-    border: 2px solid #f6f5f1;
-    background: #ffffff;
-    color: #211e1e;
-    display: block;
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 51px;
-    /* margin-top: 45px; */
-    text-align: center;
-    width: 30%;
-    border-radius: 30px;
-    -webkit-border-radius: 30px;
-    -moz-border-radius: 30px;
-    font-family: "Oswald", sans-serif;
-    text-transform: uppercase;
-    float: right;
+input[type=text],
+select,
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
 }
 
-.update-cart:hover {
-    background: #78a206 none repeat scroll 0 0;
-    border-color: #78a206;
+input[type=submit] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover {
+    background-color: #45a049;
+}
+
+.cut-dong {
+    height: 100px;
+    overflow: hidden;
+}
+
+.comment {
+    float: right;
+    border: 1px solid #000;
+    border-radius: 21px;
+    width: 60px;
+    text-align: center;
+}
+
+.comment:hover {
     color: #ffffff;
+    border-color: #78a206;
+    background: #78a206;
+}
+
+.comment a:hover {
+    color: #ffffff;
+}
+
+.alert-index {
+    position: absolute;
+    width: 20%;
+    margin-top: 100px;
+    right: 155px;
+}
+
+.botom {
+    margin-bottom: 16px;
+}
+
+.zalo-chat-cp {
+    bottom: 100px !important;
+}
+
+.icon-bar {
+    position: fixed;
+    top: 60%;
+    -webkit-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+    z-index: 10;
+    right: 10px;
+}
+
+.icon-bar a {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 23px;
+    border-radius: 84px;
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+}
+
+.facebook {
+    background: #3B5998;
+    color: white;
+}
+
+.skype {
+    background: #55ACEE;
+}
+
+.youtube {
+    background: #bb0000;
+    color: white;
 }
